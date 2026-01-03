@@ -5,7 +5,11 @@ entity top_module is
     Port ( 
         CLK : in STD_LOGIC;
         sw : in STD_LOGIC;
-        JA : in STD_LOGIC_VECTOR(1 DOWNTO 0)        
+        JA : in STD_LOGIC_VECTOR(1 DOWNTO 0);
+        S_CLOCK1HZ : out STD_LOGIC;
+        VENT : out STD_LOGIC;
+        LED_ZUM : out STD_LOGIC;
+        ESP_S : out STD_LOGIC_VECTOR(1 downto 0)
     );
 end top_module;
 
@@ -112,14 +116,14 @@ begin
         salida => salida_reg_co2
     );
     
-    inst_display0 : display12Bit
-    PORT MAP(
-        bin_in => salida_reg_met,
-        seg0 => sSeg0_0,
-        seg1 => sSeg1_0,
-        seg2 => sSeg2_0,
-        seg3 => sSeg3_0
-    );
+--    inst_display0 : display12Bit
+--    PORT MAP(
+--        bin_in => salida_reg_met,
+--        seg0 => sSeg0_0,
+--        seg1 => sSeg1_0,
+--        seg2 => sSeg2_0,
+--        seg3 => sSeg3_0
+--    );
     
     inst_display1 : display12Bit
     PORT MAP(
