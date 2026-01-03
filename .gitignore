@@ -1,0 +1,20 @@
+# Vivado generated files
+*.jou
+*.log
+*.wdb
+*.wcfg.bak
+*.str
+*.zip
+*.os
+
+# Vivado synthesis and implementation results
+/Total_Project.runs/
+*.runs/
+*.sim/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.gen/
+
+# Xilinx internal files
+.Xil/
