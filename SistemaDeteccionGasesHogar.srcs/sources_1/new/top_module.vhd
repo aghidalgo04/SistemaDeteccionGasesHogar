@@ -54,11 +54,23 @@ architecture Behavioral of top_module is
             seg3     : out std_logic_vector(6 downto 0)
         );
      end component;
+     
+    component Comparador
+        port ( 
+           CO2 : in STD_LOGIC_VECTOR(11 downto 0);
+           Metano : in STD_LOGIC_VECTOR(11 downto 0);
+           s_vent : out STD_LOGIC;
+           s_led_zum : out STD_LOGIC;
+           ESP : out STD_LOGIC_VECTOR(1 downto 0)
+         );
+    end component;
     
     signal sCLK_1Hz, sCLK_1Hz_inv : STD_LOGIC;
     signal led_value : STD_LOGIC_VECTOR(15 DOWNTO 0);
     signal xadc_value, salida_metano, salida_co2, salida_reg_met, salida_reg_co2: STD_LOGIC_VECTOR(11 DOWNTO 0);
     signal sSeg0_0, sSeg1_0, sSeg2_0, sSeg3_0, sSeg0_1, sSeg1_1, sSeg2_1, sSeg3_1: STD_LOGIC_VECTOR(6 DOWNTO 0);
+    signal sS_vent, sS_led_zum : STD_LOGIC;
+    signal sESP : STD_LOGIC_VECTOR(1 downto 0);
 begin
     inst_divisorFrecuencia: DivisorFrecuencia
     PORT MAP(
@@ -117,5 +129,14 @@ begin
         seg2 => sSeg2_1,
         seg3 => sSeg3_1
     );
+    
+    inst_comparador : Comparador
+    PORT MAP ( 
+           CO2 => salida_reg_co2,
+           Metano => salida_reg_met,
+           s_vent => sS_vent,
+           s_led_zum => sS_led_zum,
+           ESP => sESP
+         );
 
 end Behavioral;
