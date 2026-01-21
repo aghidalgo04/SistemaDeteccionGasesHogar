@@ -15,4 +15,5 @@ begin
             qAux <= not qAux;
         end if;
     end process;
+    Q <= qAux;
 end Behavioral;

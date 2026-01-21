@@ -40,7 +40,7 @@ architecture Behavioral of display is
 begin
 
     -- 2. Instanciamos tu módulo original
-    u_decoder_core : display12Bit
+    display12Bit : display12Bit
     port map (
         bin_in => bin_in,
         seg0   => s0,
