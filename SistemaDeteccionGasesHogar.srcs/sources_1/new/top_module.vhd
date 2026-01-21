@@ -49,16 +49,6 @@ architecture Behavioral of top_module is
            led : out STD_LOGIC_VECTOR(15 DOWNTO 0)
          );
     end component;
-    
-    component display12Bit
-        port(
-            bin_in   : in  std_logic_vector(11 downto 0);
-            seg0     : out std_logic_vector(6 downto 0);
-            seg1     : out std_logic_vector(6 downto 0);
-            seg2     : out std_logic_vector(6 downto 0);
-            seg3     : out std_logic_vector(6 downto 0)
-        );
-     end component;
      
     component Comparador
         port ( 
@@ -73,7 +63,6 @@ architecture Behavioral of top_module is
     signal sCLK_1Hz, sCLK_1Hz_inv : STD_LOGIC;
     signal led_aux : STD_LOGIC_VECTOR(15 DOWNTO 0);
     signal xadc_value, salida_metano, salida_co2, salida_reg_met, salida_reg_co2: STD_LOGIC_VECTOR(11 DOWNTO 0);
-    signal sSeg0_0, sSeg1_0, sSeg2_0, sSeg3_0, sSeg0_1, sSeg1_1, sSeg2_1, sSeg3_1: STD_LOGIC_VECTOR(6 DOWNTO 0);
     signal sS_vent, sS_led_zum : STD_LOGIC;
     signal sESP : STD_LOGIC_VECTOR(1 downto 0);
 begin
@@ -116,24 +105,6 @@ begin
         CLK => sCLK_1Hz,
         entrada => salida_metano,
         salida => salida_reg_co2
-    );
-    
---    inst_display0 : display12Bit
---    PORT MAP(
---        bin_in => salida_reg_met,
---        seg0 => sSeg0_0,
---        seg1 => sSeg1_0,
---        seg2 => sSeg2_0,
---        seg3 => sSeg3_0
---    );
-    
-    inst_display1 : display12Bit
-    PORT MAP(
-        bin_in => salida_reg_co2,
-        seg0 => sSeg0_1,
-        seg1 => sSeg1_1,
-        seg2 => sSeg2_1,
-        seg3 => sSeg3_1
     );
     
     inst_comparador : Comparador
