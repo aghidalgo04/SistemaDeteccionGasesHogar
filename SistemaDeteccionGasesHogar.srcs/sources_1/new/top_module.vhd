@@ -10,7 +10,10 @@ entity top_module is
         VENT : out STD_LOGIC;
         LED_ZUM : out STD_LOGIC;
         ESP_S : out STD_LOGIC_VECTOR(1 downto 0);
-        led : out STD_LOGIC_VECTOR(15 DOWNTO 0)
+        led : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+        an     : out STD_LOGIC_VECTOR(3 DOWNTO 0);
+        seg    : out STD_LOGIC_VECTOR(6 DOWNTO 0);
+        dp     : out STD_LOGIC
     );
 end top_module;
 
@@ -20,6 +23,16 @@ architecture Behavioral of top_module is
         Port ( 
             CLK_10MHz : in STD_LOGIC;
             CLK_1Hz : out STD_LOGIC
+        );
+    end component;
+    
+    component display is
+        Port ( 
+            clk    : in  STD_LOGIC;
+            bin_in : in  STD_LOGIC_VECTOR(11 DOWNTO 0);
+            an     : out STD_LOGIC_VECTOR(3 DOWNTO 0);
+            seg    : out STD_LOGIC_VECTOR(6 DOWNTO 0);
+            dp     : out STD_LOGIC
         );
     end component;
     
@@ -103,8 +116,28 @@ begin
     inst_registroC : Registro12Bits
     PORT MAP(
         CLK => sCLK_1Hz,
-        entrada => salida_metano,
+        entrada => salida_co2,
         salida => salida_reg_co2
+    );
+
+--   ==== alternativa metano ====
+
+--    inst_display_met : display
+--    PORT MAP(
+--            clk    => CLK,
+--            bin_in => salida_reg_met,
+--            an     => an,
+--            seg    => seg,
+--            dp     => dp
+--    );
+    
+    inst_display_co2 : display
+    PORT MAP(
+            clk    => CLK,
+            bin_in => salida_reg_co2,
+            an     => an,
+            seg    => seg,
+            dp     => dp
     );
     
     inst_comparador : Comparador
