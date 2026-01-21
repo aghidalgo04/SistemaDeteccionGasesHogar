@@ -10,6 +10,10 @@ end Biestable_D;
 architecture Behavioral of Biestable_D is
     signal qAux: STD_LOGIC := '0';
 begin
-    qAux <= D WHEN CLK = '1' AND CLK'EVENT ELSE qAux;
-    Q <= qAux;
+    process(CLK)
+    begin
+        if rising_edge(CLK) then -- Forma estándar de detectar el flanco de subida
+            Q <= D;
+        end if;
+    end process;
 end Behavioral;

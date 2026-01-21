@@ -3,17 +3,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity top_module is
     Port ( 
-        CLK : in STD_LOGIC;
-        sw : in STD_LOGIC;
-        JA : in STD_LOGIC_VECTOR(1 DOWNTO 0);
-        S_CLOCK1HZ : out STD_LOGIC;
-        VENT : out STD_LOGIC;
-        LED_ZUM : out STD_LOGIC;
-        ESP_S : out STD_LOGIC_VECTOR(1 downto 0);
-        led : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-        an     : out STD_LOGIC_VECTOR(3 DOWNTO 0);
-        seg    : out STD_LOGIC_VECTOR(6 DOWNTO 0);
-        dp     : out STD_LOGIC
+        CLK         : in STD_LOGIC;
+        sw          : in STD_LOGIC;
+        JA          : in STD_LOGIC_VECTOR(1 DOWNTO 0);
+        S_CLOCK1HZ  : out STD_LOGIC;
+        VENT        : out STD_LOGIC;
+        LED_ZUM     : out STD_LOGIC;
+        ESP_S       : out STD_LOGIC_VECTOR(1 downto 0);
+        led         : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+        an          : out STD_LOGIC_VECTOR(3 DOWNTO 0);
+        seg         : out STD_LOGIC_VECTOR(6 DOWNTO 0);
+        dp          : out STD_LOGIC
     );
 end top_module;
 
