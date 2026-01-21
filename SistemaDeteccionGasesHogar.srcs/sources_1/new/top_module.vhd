@@ -9,7 +9,8 @@ entity top_module is
         S_CLOCK1HZ : out STD_LOGIC;
         VENT : out STD_LOGIC;
         LED_ZUM : out STD_LOGIC;
-        ESP_S : out STD_LOGIC_VECTOR(1 downto 0)
+        ESP_S : out STD_LOGIC_VECTOR(1 downto 0);
+        led : out STD_LOGIC_VECTOR(15 DOWNTO 0)
     );
 end top_module;
 
@@ -70,7 +71,7 @@ architecture Behavioral of top_module is
     end component;
     
     signal sCLK_1Hz, sCLK_1Hz_inv : STD_LOGIC;
-    signal led_value : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    signal led_aux : STD_LOGIC_VECTOR(15 DOWNTO 0);
     signal xadc_value, salida_metano, salida_co2, salida_reg_met, salida_reg_co2: STD_LOGIC_VECTOR(11 DOWNTO 0);
     signal sSeg0_0, sSeg1_0, sSeg2_0, sSeg3_0, sSeg0_1, sSeg1_1, sSeg2_1, sSeg3_1: STD_LOGIC_VECTOR(6 DOWNTO 0);
     signal sS_vent, sS_led_zum : STD_LOGIC;
@@ -87,10 +88,11 @@ begin
         clk => sCLK_1Hz,
         sw => sw,
         JA => JA,
-        led => led_value
+        led => led_aux
     );
     
-    xadc_value <= led_value(15 DOWNTO 4);
+    xadc_value <= led_aux(15 DOWNTO 4);
+    led <= led_aux;
     
     inst_demux: DEMUX_1a2
     PORT MAP(
