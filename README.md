@@ -4,7 +4,7 @@ The **Home Gas Detection System (SDGH)** is an embedded real-time monitoring sol
 
 ## Overview
 
-The primary objective of the SDGH is to analyze analog sensor data in real-time and manage digital control signals to ensure domestic safety. The system is built entirely in **VHDL**, utilizing the FPGA's processing power to handle high-frequency ADC sampling and multiplexed visual outputs. The architecture features a modular design where concurrent components manage sensor digitization, threshold comparison, and data stability.
+The primary objective of the SDGH is to analyze analog sensor data in real-time and manage digital control outputs to ensure domestic safety. The system is built entirely in **VHDL**, utilizing the FPGA's processing power to handle high-frequency ADC sampling and multiplexed visual outputs. The architecture features a modular design where concurrent components manage sensor digitization, threshold comparison, and data stability.
 
 The system operates based on two detection states:
 * **Warning Mode:** Triggers a visual LED signal and an auditory alarm (buzzer) when gas levels exceed the initial safety threshold.
@@ -17,7 +17,7 @@ The system operates based on two detection states:
 The following diagram illustrates the internal modularity of the VHDL design. It shows the hierarchical structure where the `top_module` integrates the `xadc` interface, data stabilization registers, and the BCD conversion logic.
 
 ### Component Diagram
-![Component Diagram Placeholder]
+![Diagram](https://github.com/aghidalgo04/SistemaDeteccionGasesHogar/blob/main/Memoria/Diagrama%20SGBC.drawio.png)
 
 > **Diagram Description:** This visual represents the RTL (Register-Transfer Level) interconnection. The signal enters through the `xadc` module, is demultiplexed into $CH_4$ and $CO_2$ paths, stored in `Registro12Bits` for stability, and finally processed by the `Comparador` to determine alarm states.
 
@@ -28,7 +28,7 @@ The following diagram illustrates the internal modularity of the VHDL design. It
 The hardware setup utilizes the Basys 3 board's onboard resources and external analog sensors. Due to the FPGA's 1V input limit on the JXADC ports, a custom voltage divider was implemented.
 
 ### Final Hardware Photo
-![Final Hardware Photo Placeholder]
+![Final Hardware Photo Placeholder](https://github.com/aghidalgo04/SistemaDeteccionGasesHogar/blob/main/Memoria/IMG_7737.jpeg)
 
 > **Photo Description:** The final prototype captures the Basys 3 FPGA connected to the MQ-135 sensor via the JA Pmod ports. It highlights the custom voltage divider circuit (using 4kΩ and 1kΩ resistors) which scales the sensor's 5V output down to the safe 1V range required for accurate digital conversion.
 
@@ -72,14 +72,3 @@ Verification was conducted through both simulation and physical hardware testing
 
 ---
 
-## Future Improvements
-* **NIR Integration:** Implement Near-Infrared (NIR) sensors for high-precision Methane detection.
-* **I2C Communication:** Support for advanced digital sensors requiring pull-up resistors and I2C protocol logic.
-* **OLED Support:** Transition from 7-segment displays to RGB OLED for better data visualization.
-
----
-**Developed by Team PHR25-M03**
-* Guzmán Torres, Pedro Ángel (Lead)
-* García Hidalgo, Alejandro
-* Pavo Puertas, David
-* Zheng, Zixin
